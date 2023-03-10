@@ -49,10 +49,13 @@ function App() {
               
               <button class="buttons"onClick={()=>{
                 if(count==0){
-                  axios.get('https://codingapple1.github.io/shop/data2.json').then((data)=>{
+                  fetch("https://codingapple1.github.io/shop/data2.json")
+                  .then((res) => res.json())
+                  .then((data) => {
                     let copy = [...shoes, ...data.data]
                     setShoes(copy)
-                  })
+                  });
+                  
                 }else if(count==1){
                   axios.get('https://codingapple1.github.io/shop/data3.json').then((data)=>{
                     let copy = [...shoes, ...data.data]
@@ -70,7 +73,7 @@ function App() {
       }/>
       <Route path="/detail/:id" element={<Detail shoes={shoes}/>}></Route>
       <Route path="/test" element={<Test shoes={shoes}/>}></Route>
-      <Route path="*" element={ <div>404</div> } />
+      <Route path="*" element={ <div>404 form</div> } />
      </Routes>
     </>
   );
