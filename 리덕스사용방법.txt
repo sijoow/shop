@@ -1,0 +1,85 @@
+
+라이브러리 설치
+reduc tokit
+npm install @reduxjs/toolkit react-redux
+
+index.js 세팅
+import { Provider } from "react-redux";
+import store from './store.js' 
+  <React.StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>
+
+   store.js 기본 세팅
+
+   import { configureStore } from '@reduxjs/toolkit'
+     let user = createSlice({
+         name : 'user',
+         initialState : 'kim',
+    }) 
+
+   export default configureStore({
+     reducer: {
+       user : user.reducer
+     }
+   }) 
+
+  cart.js 세팅
+  import { useSelector } from "react-redux"
+  let state = useSelector((state)=>{return state})
+  console.log(state.cart[0].name)
+
+
+  state 수정방법
+  
+  reducers : {
+    함수생성(state){
+        return '변경될말' +state
+    }
+  }
+  export let {함수변경} =user.actions 
+
+ 이후Cart.js에서
+import { useDispatch, useSelector } from "react-redux"
+import { changeName } from "./../store.js"
+
+<button onClick={()=>{
+  dispatch(changeName())
+}}>버튼임</button> 
+
+ 
+
+
+ import { configureStore, createSlice } from '@reduxjs/toolkit'
+
+  let user = createSlice({
+    name : 'user',
+    initialState : 'kim',
+    reducers : {
+      changeName(state){
+        return 'john'+state
+      }
+    }
+  }) 
+ export let {changeName} = user.actions
+
+let cart = createSlice({
+    name : 'cart',
+    //object 데이터 값
+    initialState : [
+      {id : 0, name : 'White and Black', count : 2,price:12000},
+      {id : 2, name : 'Grey Yordan', count : 1,price:14000}
+    ],
+  })
+  
+  export default configureStore({
+    reducer: {
+      cart : cart.reducer,
+      user : user.reducer
+    }
+  }) 
+
