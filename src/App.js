@@ -20,6 +20,9 @@ function App() {
     })
     .catch(()=>{
     })
+    //https://codingapple1.github.io/shop/data2.json
+   // https://yogico.cafe24.com/json/yogibo.json
+
   },[]);
   
 
