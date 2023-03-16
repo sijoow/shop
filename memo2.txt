@@ -3,18 +3,15 @@
   useEffect(() => {
     axios.get('https://codingapple1.github.io/shop/data2.json').then((res)=>{
       setYo([...res.data]);
-      console.log(setYo)
+      console.log(res)
     })
     .catch(()=>{
     })
   },[]);
-
-
-
+  
+  삼항연산자로 useState 안쪽 값이 빈값이 아니라면 출력해줘 라는 함수를 넣고 시작하쟈
     {
     yo !=null
-    ?<div>213</div>
+    ?<div>{yo[1].title}</div>
     :null
-}
-
-  
+    }
